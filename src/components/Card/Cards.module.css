@@ -1,0 +1,10 @@
+.cards {
+  width: 80%;
+  margin: 4rem auto;
+}
+
+.cards ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

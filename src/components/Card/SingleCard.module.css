@@ -1,0 +1,44 @@
+.card {
+  margin: 1rem auto;
+  border-radius: 4px;
+  background-color: rgb(243, 244, 245);
+  padding: 1rem;
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardImg {
+  position: relative;
+}
+
+.cardImg img {
+}
+
+.actions {
+  display: flex;
+  align-items: stretch;
+  margin: 1rem auto;
+}
+
+.card p {
+  color: #3a3a3a;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.liked svg {
+  fill: rgba(239, 49, 36, 0.85);
+}
+
+.closeBtn {
+  fill: rgba(239, 49, 36, 0.85);
+  position: absolute;
+  top: 0.5rem;
+  left: 16rem;
+}
