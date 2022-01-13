@@ -6,13 +6,21 @@
   max-width: 20rem;
   display: flex;
   flex-direction: column;
-}
-
-.cardImg {
   position: relative;
 }
 
+.cardImg {
+  width: 18rem;
+  height: 18rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .cardImg img {
+  height: 100%;
+  width: auto;
 }
 
 .actions {
@@ -32,13 +40,26 @@ button {
   border: none;
 }
 
-.liked svg {
+.liked svg,
+.closeBtn svg:hover {
   fill: rgba(239, 49, 36, 0.85);
 }
 
 .closeBtn {
-  fill: rgba(239, 49, 36, 0.85);
+  background-color: rgb(243, 244, 245);
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
   position: absolute;
-  top: 0.5rem;
-  left: 16rem;
+  top: 0;
+  left: 18rem;
+  transition: all 0.3s ease;
+}
+
+.closeBtn:hover {
+  transform: scale(1.2);
+}
+
+.closeBtn svg {
+  fill: #3a3a3a;
 }
