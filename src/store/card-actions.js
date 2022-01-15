@@ -1,4 +1,4 @@
-import { cardActions } from "./card-slice";
+import { cardActions } from "./index";
 
 export const fetchCardData = () => {
   return async (dispatch) => {
@@ -16,10 +16,17 @@ export const fetchCardData = () => {
 
     try {
       const cardData = await fetchData();
-      console.log(cardData);
+      const formatedCardData = await cardData.map((card) => {
+        return {
+          id: card.id,
+          title: card.author,
+          img: card.download_url,
+          cardIsLiked: false,
+        };
+      });
       dispatch(
         cardActions.displayAllCards({
-          allCards: cardData || [],
+          allCards: formatedCardData || [],
         })
       );
     } catch (error) {

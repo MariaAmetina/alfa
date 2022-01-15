@@ -13,8 +13,9 @@ const Cards = (props) => {
           <SingleCard
             key={card.id}
             id={card.id}
-            img={card.download_url}
-            title={card.author}
+            img={card.img}
+            title={card.title}
+            liked={card.cardIsLiked}
           />
         ))}
       </ul>

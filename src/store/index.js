@@ -1,6 +1,52 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-import cardSlice from "./card-slice";
+const cardSlice = createSlice({
+  name: "cards",
+  initialState: {
+    allCards: [],
+    likedCards: [],
+  },
+
+  reducers: {
+    displayAllCards(state, action) {
+      state.allCards = action.payload.allCards;
+    },
+    toggleLike(state, action) {
+      const id = action.payload;
+      state.allCards = state.allCards.map((card) => {
+        if (card.id === id) {
+          card.cardIsLiked = !card.cardIsLiked;
+        }
+        return card;
+      });
+    },
+    removeCard(state, action) {
+      const id = action.payload;
+      state.allCards = state.allCards.filter((card) => card.id !== id);
+    },
+    showlikedCards(state, action) {
+      const liked = action.payload.allCards;
+      state.allCards = liked.filter((card) => card.cardIsLiked === true);
+    },
+
+    addCardToLiked(state, action) {
+      const likedCard = action.payload;
+      const existingLikedCard = state.allCards.find(
+        (card) => card.cardIsLiked === true
+      );
+      if (existingLikedCard) {
+        state.likedCards.push({
+          id: likedCard.id,
+          img: likedCard.img,
+          title: likedCard.title,
+          cardIsLiked: true,
+        });
+      }
+    },
+  },
+});
+
+export const cardActions = cardSlice.actions;
 
 const store = configureStore({
   reducer: { cards: cardSlice.reducer },

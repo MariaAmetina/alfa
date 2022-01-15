@@ -25,8 +25,11 @@
 
 .actions {
   display: flex;
-  align-items: stretch;
-  margin: 1rem auto;
+  margin: 1rem 0;
+}
+
+.actions button {
+  margin-left: auto;
 }
 
 .card p {
@@ -40,6 +43,10 @@ button {
   border: none;
 }
 
+.liked {
+  box-shadow: 0 0 1rem rgba(239, 49, 36, 0.85);
+}
+
 .liked svg,
 .closeBtn svg:hover {
   fill: rgba(239, 49, 36, 0.85);
@@ -50,6 +57,10 @@ button {
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  align-items: center;
   position: absolute;
   top: 0;
   left: 18rem;
