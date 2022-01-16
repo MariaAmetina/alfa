@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Layout from "./components/Layout/Layout";
 import Cards from "./components/Card/Cards";
@@ -7,10 +7,14 @@ import { fetchCardData } from "./store/card-actions";
 
 function App() {
   const dispatch = useDispatch();
+  const displayLikedCards = useSelector((state) => state.cards.displayLiked);
+  console.log(displayLikedCards);
 
   useEffect(() => {
-    dispatch(fetchCardData());
-  }, [dispatch]);
+    if (!displayLikedCards) {
+      dispatch(fetchCardData());
+    }
+  }, [dispatch, displayLikedCards]);
 
   return (
     <Layout>

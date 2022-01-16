@@ -7,15 +7,16 @@ const LikedButton = (props) => {
   const dispatch = useDispatch();
   const allCards = useSelector((state) => state.cards.allCards);
   const cardsThatLiked = useSelector((state) => state.cards.likedCards);
-  const { id, img, title, liked } = props;
 
   const showAllCardsHandler = (e) => {
     e.stopPropagation();
+    dispatch(cardActions.displayAllCards({ allCards: allCards }));
     console.log("close");
   };
 
   const showLikedCardsHandler = (e) => {
-    dispatch(cardActions.showlikedCards({ allCards }));
+    //dispatch(cardActions.showlikedCards({ allCards }));
+    dispatch(cardActions.showlikedCards({ allCards: cardsThatLiked }));
   };
 
   return (

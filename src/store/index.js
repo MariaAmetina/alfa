@@ -5,10 +5,12 @@ const cardSlice = createSlice({
   initialState: {
     allCards: [],
     likedCards: [],
+    displayLiked: false,
   },
 
   reducers: {
     displayAllCards(state, action) {
+      state.displayLiked = false;
       state.allCards = action.payload.allCards;
     },
     toggleLike(state, action) {
@@ -26,6 +28,7 @@ const cardSlice = createSlice({
     },
     showlikedCards(state, action) {
       const liked = action.payload.allCards;
+      state.displayLiked = true;
       state.allCards = liked.filter((card) => card.cardIsLiked === true);
     },
 
