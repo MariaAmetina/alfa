@@ -8,7 +8,6 @@ import { fetchCardData } from "./store/card-actions";
 function App() {
   const dispatch = useDispatch();
   const displayLikedCards = useSelector((state) => state.cards.displayLiked);
-  console.log(displayLikedCards);
 
   useEffect(() => {
     if (!displayLikedCards) {

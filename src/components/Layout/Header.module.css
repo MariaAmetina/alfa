@@ -1,14 +1,26 @@
 .header {
   width: 100%;
   height: 5rem;
-  padding: 0 10%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 0 1.5rem;
   background-color: rgb(216, 236, 248);
 }
 
+.wrapper {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 500px) {
+  .wrapper {
+    width: 100%;
+  }
+}
+
 .header h1 {
+  margin-right: 2rem;
   color: rgba(239, 49, 36, 0.85);
 }
 

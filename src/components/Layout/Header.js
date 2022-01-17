@@ -4,14 +4,16 @@ import classes from "./Header.module.css";
 const Header = (props) => {
   return (
     <header className={classes.header}>
-      <h1>Фото</h1>
-      <nav>
-        <ul>
-          <li>
-            <LikedButton />
-          </li>
-        </ul>
-      </nav>
+      <div className={classes.wrapper}>
+        <h1>Фото</h1>
+        <nav>
+          <ul>
+            <li>
+              <LikedButton />
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 };

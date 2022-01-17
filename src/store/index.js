@@ -1,58 +1,37 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-const cardSlice = createSlice({
-  name: "cards",
-  initialState: {
-    allCards: [],
-    likedCards: [],
-    displayLiked: false,
-  },
+import cardSlice from "./card-slice";
 
-  reducers: {
-    displayAllCards(state, action) {
-      state.displayLiked = false;
-      state.allCards = action.payload.allCards;
-    },
-    toggleLike(state, action) {
-      const id = action.payload;
-      state.allCards = state.allCards.map((card) => {
-        if (card.id === id) {
-          card.cardIsLiked = !card.cardIsLiked;
-        }
-        return card;
-      });
-    },
-    removeCard(state, action) {
-      const id = action.payload;
-      state.allCards = state.allCards.filter((card) => card.id !== id);
-    },
-    showlikedCards(state, action) {
-      const liked = action.payload.allCards;
-      state.displayLiked = true;
-      state.allCards = liked.filter((card) => card.cardIsLiked === true);
-    },
+const rootReducer = combineReducers({ cards: cardSlice.reducer });
 
-    addCardToLiked(state, action) {
-      const likedCard = action.payload;
-      const existingLikedCard = state.allCards.find(
-        (card) => card.cardIsLiked === true
-      );
-      if (existingLikedCard) {
-        state.likedCards.push({
-          id: likedCard.id,
-          img: likedCard.img,
-          title: likedCard.title,
-          cardIsLiked: true,
-        });
-      }
-    },
-  },
-});
+const persistConfig = {
+  key: "root",
+  storage,
+};
 
-export const cardActions = cardSlice.actions;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: { cards: cardSlice.reducer },
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export const persistor = persistStore(store);
 
 export default store;

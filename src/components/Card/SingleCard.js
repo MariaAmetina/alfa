@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 
 import classes from "./SingleCard.module.css";
-import { cardActions } from "../../store/index";
+import { cardActions } from "../../store/card-slice";
 
 const SingleCard = (props) => {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const SingleCard = (props) => {
 
   return (
     <li className={`${classes.card} ${liked ? classes.liked : ""}`}>
-      <button className={classes.closeBtn} onClick={removeCardHandler}>
+      <button className={classes.close_btn} onClick={removeCardHandler}>
         <svg
           width="24"
           height="24"
@@ -53,7 +53,7 @@ const SingleCard = (props) => {
           <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm0 10.293l5.293-5.293.707.707-5.293 5.293 5.293 5.293-.707.707-5.293-5.293-5.293 5.293-.707-.707 5.293-5.293-5.293-5.293.707-.707 5.293 5.293z" />
         </svg>
       </button>
-      <div className={classes.cardImg}>
+      <div className={classes.card_img}>
         <img src={img} alt="pic"></img>
       </div>
       <div className={classes.actions}>

@@ -1,21 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { cardActions } from "../../store";
+import { cardActions } from "../../store/card-slice";
+import { fetchCardData } from "../../store/card-actions";
 import classes from "./LikedButton.module.css";
 
 const LikedButton = (props) => {
   const dispatch = useDispatch();
-  const allCards = useSelector((state) => state.cards.allCards);
   const cardsThatLiked = useSelector((state) => state.cards.likedCards);
 
-  const showAllCardsHandler = (e) => {
-    e.stopPropagation();
-    dispatch(cardActions.displayAllCards({ allCards: allCards }));
-    console.log("close");
+  const showAllCardsHandler = () => {
+    dispatch(fetchCardData());
   };
 
-  const showLikedCardsHandler = (e) => {
-    //dispatch(cardActions.showlikedCards({ allCards }));
+  const showLikedCardsHandler = () => {
     dispatch(cardActions.showlikedCards({ allCards: cardsThatLiked }));
   };
 
